@@ -8,10 +8,10 @@ export function BuiltBySection() {
         <div className="text-center space-y-6">
           <h2 className="text-4xl font-semibold text-white">Start your financial journey <span className="italic">today</span></h2>
           <p className="mx-auto max-w-2xl text-lg text-blue-100">
-            Join thousands of users already mastering their finances. Get started with a free account—no credit card required.
+            Compare savings rates and watch your money grow. No signup needed—start comparing right away.
           </p>
           <Button size="lg" className="rounded-xl px-8 bg-blue-600 text-white hover:bg-blue-700" asChild>
-            <Link href="/calculator">Create my free account</Link>
+            <Link href="/calculator">Start Comparing Now</Link>
           </Button>
         </div>
 
