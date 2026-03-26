@@ -5,6 +5,7 @@ const NAV_ITEMS = [
   { href: "#how-it-works", label: "How it works" },
   { href: "#platforms", label: "Platforms" },
   { href: "/calculator", label: "Calculator" },
+  { href: "/education", label: "Education" },
 ] as const
 
 export function MainNav() {

@@ -29,14 +29,7 @@ export function InvestmentRecommendation() {
   });
 
   if (!recommendation) {
-    return (
-      <div className="rounded-lg border border-gray-200 bg-white p-4">
-        <p className="text-sm font-semibold text-gray-900">Recommendation</p>
-        <p className="mt-1 text-xs text-gray-600">
-          Run an investment projection to see personalized guidance.
-        </p>
-      </div>
-    );
+    return null;
   }
 
   return (

@@ -84,16 +84,7 @@ export function SavingsVsInvestingComparison() {
   const isInvestingBetter = investingProj.finalBalance > savingsProj.finalBalance;
 
   return (
-    <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4">
-      {/* Header */}
-      <div>
-        <h3 className="text-sm font-semibold text-gray-900">Strategy Comparison</h3>
-        <p className="mt-1 text-xs text-gray-600">
-          Same ₱{initialAmount.toLocaleString()} initial + ₱{monthlyContribution.toLocaleString()}/month
-          over {yearsHorizon.toFixed(1)} years
-        </p>
-      </div>
-
+    <div className="space-y-3">
       {/* Side-by-side comparison cards */}
       <div className="grid gap-3 md:grid-cols-2">
         {/* Savings Card */}

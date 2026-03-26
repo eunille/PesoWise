@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import Link from "next/link"
+import { ChevronDown } from 'lucide-react';
 
 import { Button } from "@/components/ui/button"
 import { CalculatorShell } from "@/features/savings/ui/CalculatorShell"
 import { ComparisonShell } from "@/features/savings/ui/ComparisonShell"
 import { GrowthChart } from "@/features/savings/ui/GrowthChart"
 import { CalculatorProvider } from "@/hooks/useCalculatorState.tsx"
-import { InvestmentProvider } from "@/hooks/useInvestmentState"
+import { InvestmentProvider, useInvestmentState } from "@/hooks/useInvestmentState"
 import { InvestingCalculator } from "@/features/investing/ui/InvestingCalculator"
 import { GoalBasedCalculator, type GoalBasedCalculationResult } from "@/features/investing/ui/GoalBasedCalculator"
 import { GoalBasedResults } from "@/features/investing/ui/GoalBasedResults"
@@ -16,11 +17,117 @@ import { InvestingGrowthChart } from "@/features/investing/ui/InvestingGrowthCha
 import { InvestmentScenarioComparison } from "@/features/investing/ui/InvestmentScenarioComparison"
 import { SavingsVsInvestingComparison } from "@/features/investing/ui/SavingsVsInvestingComparison"
 import { InvestmentRecommendation } from "@/features/investing/ui/InvestmentRecommendation"
-import { EducationalCards } from "@/features/investing/ui/EducationalCards"
 import { getSavingsLandingContent } from "@/features/savings/application/getSavingsLandingContent"
 
-type TabType = 'savings' | 'investing' | 'education';
+type TabType = 'savings' | 'investing';
 type CalculatorMode = 'projection' | 'goalBased';
+
+/**
+ * Inner component to access investment context state
+ */
+function InvestmentResultsSection({
+  calculatorMode,
+  goalBasedResult,
+}: {
+  calculatorMode: CalculatorMode;
+  goalBasedResult: GoalBasedCalculationResult | null;
+}) {
+  const { allProjections } = useInvestmentState();
+  const [openSections, setOpenSections] = useState({
+    strategy: false,
+    recommendation: false,
+  });
+
+  const hasProjections = allProjections !== null;
+
+  const toggleSection = (section: 'strategy' | 'recommendation') => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
+  return (
+    <div className="lg:col-span-2 space-y-8">
+      {calculatorMode === 'projection' && (
+        <>
+          <InvestingGrowthChart />
+          <InvestmentScenarioComparison />
+
+          {/* Collapsible sections - only show when data exists */}
+          {hasProjections && (
+            <>
+              {/* Strategy Comparison - Minimalist Trigger */}
+              <div className="space-y-3">
+                <button
+                  onClick={() => toggleSection('strategy')}
+                  className="flex w-full items-center gap-2 py-2 text-left hover:text-blue-600 transition-colors group"
+                >
+                  <ChevronDown
+                    size={18}
+                    className={`text-gray-600 transition-transform duration-200 ${
+                      openSections.strategy ? 'rotate-180' : ''
+                    }`}
+                  />
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold text-gray-900 group-hover:text-blue-600">
+                      Strategy Comparison
+                    </h3>
+                    <p className="text-xs text-gray-600">
+                      Compare savings vs investing growth
+                    </p>
+                  </div>
+                </button>
+                {openSections.strategy && (
+                  <div className="pt-2">
+                    <SavingsVsInvestingComparison />
+                  </div>
+                )}
+              </div>
+
+              {/* Investment Recommendation - Minimalist Trigger */}
+              <div className="space-y-3">
+                <button
+                  onClick={() => toggleSection('recommendation')}
+                  className="flex w-full items-center gap-2 py-2 text-left hover:text-blue-600 transition-colors group"
+                >
+                  <ChevronDown
+                    size={18}
+                    className={`text-gray-600 transition-transform duration-200 ${
+                      openSections.recommendation ? 'rotate-180' : ''
+                    }`}
+                  />
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold text-gray-900 group-hover:text-blue-600">
+                      Investment Recommendation
+                    </h3>
+                    <p className="text-xs text-gray-600">
+                      Personalized insights based on your inputs
+                    </p>
+                  </div>
+                </button>
+                {openSections.recommendation && (
+                  <div className="pt-2">
+                    <InvestmentRecommendation />
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+        </>
+      )}
+
+      {calculatorMode === 'goalBased' && goalBasedResult && (
+        <GoalBasedResults
+          targetAmount={goalBasedResult.targetAmount}
+          durationMonths={goalBasedResult.durationMonths}
+          annualReturnRate={goalBasedResult.annualReturnRate}
+          options={goalBasedResult.options}
+        />
+      )}
+    </div>
+  );
+}
 
 export default function CalculatorPage() {
   const content = getSavingsLandingContent()
@@ -46,16 +153,12 @@ export default function CalculatorPage() {
                 <h1 className="text-4xl font-semibold tracking-tight text-black">
                   {activeTab === 'savings'
                     ? 'Savings Projection'
-                    : activeTab === 'investing'
-                      ? 'Investment Growth'
-                      : 'Investment Education'} Simulator
+                    : 'Investment Growth'} Simulator
                 </h1>
                 <p className="text-base text-black/70">
                   {activeTab === 'savings'
                     ? 'Enter your values and compare estimated outcomes across supported platforms.'
-                    : activeTab === 'investing'
-                      ? 'Project your investment growth across different scenarios.'
-                      : 'Learn key investing concepts before making financial decisions.'}
+                    : 'Project your investment growth across different scenarios.'}
                 </p>
               </div>
 
@@ -85,16 +188,6 @@ export default function CalculatorPage() {
                 }`}
               >
                 Investing
-              </button>
-              <button
-                onClick={() => setActiveTab('education')}
-                className={`px-4 py-3 font-medium transition-colors ${
-                  activeTab === 'education'
-                    ? 'border-b-2 border-blue-600 text-blue-600'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Education
               </button>
             </div>
 
@@ -171,34 +264,13 @@ export default function CalculatorPage() {
                 </div>
 
                 {/* Right column: Results based on mode */}
-                <div className="lg:col-span-2 space-y-8">
-                  {calculatorMode === 'projection' && (
-                    <>
-                      <InvestingGrowthChart />
-                      <InvestmentScenarioComparison />
-                      <SavingsVsInvestingComparison />
-                      <InvestmentRecommendation />
-                    </>
-                  )}
-                  
-                  {calculatorMode === 'goalBased' && goalBasedResult && (
-                    <GoalBasedResults
-                      targetAmount={goalBasedResult.targetAmount}
-                      durationMonths={goalBasedResult.durationMonths}
-                      annualReturnRate={goalBasedResult.annualReturnRate}
-                      options={goalBasedResult.options}
-                    />
-                  )}
-                </div>
+                <InvestmentResultsSection
+                  calculatorMode={calculatorMode}
+                  goalBasedResult={goalBasedResult}
+                />
               </div>
             )}
 
-            {/* Education Tab */}
-            {activeTab === 'education' && (
-              <div className="mx-auto max-w-4xl">
-                <EducationalCards />
-              </div>
-            )}
           </div>
         </main>
       </InvestmentProvider>
