@@ -112,17 +112,17 @@ export function HowItWorksStepperSection() {
     <section
       id="how-it-works"
       ref={sectionRef}
-      className="relative mx-auto w-full max-w-4xl px-4 py-24 sm:px-6 lg:px-8"
+      className="relative mx-auto w-full max-w-4xl px-4 py-12 sm:py-16 md:py-20 lg:py-24 sm:px-6 lg:px-8"
     >
-      <div className="mb-16 text-center">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-blue-600">How it works</p>
-        <h2 className="mb-8 text-5xl font-semibold tracking-tight text-black">Three simple steps</h2>
+      <div className="mb-10 sm:mb-12 md:mb-16 text-center">
+        <p className="mb-2 text-xs sm:text-sm font-semibold uppercase tracking-wide text-blue-600">How it works</p>
+        <h2 className="mb-6 sm:mb-8 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-black">Three simple steps</h2>
 
         {/* Tab buttons */}
-        <div className="flex justify-center gap-8">
+        <div className="flex justify-center gap-4 sm:gap-8">
           <button
             onClick={() => setActiveTab('savings')}
-            className={`pb-3 font-semibold transition-colors duration-200 ${
+            className={`pb-2 sm:pb-3 text-sm sm:text-base font-semibold transition-colors duration-200 ${
               activeTab === 'savings'
                 ? 'border-b-2 border-blue-600 text-blue-600'
                 : 'border-b-2 border-transparent text-black/50 hover:text-black'
@@ -132,7 +132,7 @@ export function HowItWorksStepperSection() {
           </button>
           <button
             onClick={() => setActiveTab('investing')}
-            className={`pb-3 font-semibold transition-colors duration-200 ${
+            className={`pb-2 sm:pb-3 text-sm sm:text-base font-semibold transition-colors duration-200 ${
               activeTab === 'investing'
                 ? 'border-b-2 border-blue-600 text-blue-600'
                 : 'border-b-2 border-transparent text-black/50 hover:text-black'
@@ -143,13 +143,13 @@ export function HowItWorksStepperSection() {
         </div>
       </div>
 
-      <div className="relative space-y-20">
+      <div className="relative space-y-12 sm:space-y-16 lg:space-y-20">
         {/* Vertical line background track */}
-        <div className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-blue-200 via-blue-100 to-transparent" />
+        <div className="absolute left-4 sm:left-8 lg:left-1/2 top-0 h-full w-0.5 sm:w-1 lg:-translate-x-1/2 bg-gradient-to-b from-blue-200 via-blue-100 to-transparent" />
 
         {/* Animated progress line */}
         <div
-          className="absolute left-1/2 top-0 w-0.5 -translate-x-1/2 transition-all duration-75"
+          className="absolute left-4 sm:left-8 lg:left-1/2 top-0 w-0.5 sm:w-1 lg:-translate-x-1/2 transition-all duration-75"
           style={{
             height: `${scrollProgress}%`,
             background:
@@ -178,30 +178,30 @@ export function HowItWorksStepperSection() {
                 if (el) stepsRefsMap.current[step.number] = el
               }}
               data-step={step.number}
-              className="relative min-h-96 transition-all duration-100 flex items-center"
+              className="relative min-h-48 sm:min-h-64 lg:min-h-96 transition-all duration-100 flex items-center"
               style={{
                 transform: `translateY(${(1 - (stepsProgress[step.number] || 0)) * 20}px)`,
               }}
             >
               {/* Content wrapper - positioned left or right */}
               <div
-                className={`w-full lg:w-2/5 ${isLeft ? 'pr-12' : 'ml-auto pl-12'}`}
+                className={`w-full lg:w-2/5 ${isLeft ? 'pl-16 sm:pl-20 lg:pr-12 lg:pl-0' : 'pl-16 sm:pl-20 lg:ml-auto lg:pl-12'}`}
               >
-                <div className="space-y-4">
-                  <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">
+                <div className="space-y-2 sm:space-y-4">
+                  <p className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-blue-600">
                     Step {step.number}
                   </p>
-                  <h3 className="text-3xl font-semibold text-black">{step.title}</h3>
-                  <p className="text-lg leading-relaxed text-black/70">{step.description}</p>
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-black">{step.title}</h3>
+                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-black/70">{step.description}</p>
                 </div>
               </div>
 
-              {/* Step circle - centered on vertical line */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              {/* Step circle - positioned on vertical line */}
+              <div className="absolute left-4 sm:left-8 lg:left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div
-                      className="h-16 w-16 rounded-full bg-gradient-to-br"
+                      className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 rounded-full bg-gradient-to-br"
                       style={{
                         backgroundImage:
                           step.number === 1
@@ -212,8 +212,8 @@ export function HowItWorksStepperSection() {
                       }}
                     />
                   </div>
-                  <div className={`relative flex h-16 w-16 items-center justify-center rounded-full border-4 border-white ${circleColors[step.number as keyof typeof circleColors]} shadow-lg`}>
-                    <span className="text-xl font-bold text-white">{step.number}</span>
+                  <div className={`relative flex h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 items-center justify-center rounded-full border-3 sm:border-4 border-white ${circleColors[step.number as keyof typeof circleColors]} shadow-lg`}>
+                    <span className="text-lg sm:text-xl font-bold text-white">{step.number}</span>
                   </div>
                 </div>
               </div>

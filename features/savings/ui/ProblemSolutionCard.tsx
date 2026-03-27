@@ -34,47 +34,47 @@ export function ProblemSolutionCard({
   isReversed = false,
 }: ProblemSolutionCardProps) {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:py-20 lg:px-8 lg:py-24">
       <div
-        className={`grid gap-8 lg:grid-cols-2 lg:items-center ${
+        className={`grid gap-6 sm:gap-8 lg:grid-cols-2 lg:items-center ${
           isReversed ? 'lg:[direction:rtl]' : ''
         }`}
       >
-        {/* Left: Visual (illustration or mockup) */}
-        <div className="flex items-center justify-center">
+        {/* Left: Visual (illustration or mockup) - hidden on mobile */}
+        <div className="hidden sm:flex items-center justify-center">
           <div className="w-full max-w-md rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 p-4">
             {visual}
           </div>
         </div>
 
         {/* Right: Content */}
-        <div className="space-y-6">
+        <div className="space-y-5 sm:space-y-6">
           {/* Badge */}
           <div className="inline-block">
             <span
-              className={`${BADGE_COLORS[badgeColor]} inline-block rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider`}
+              className={`${BADGE_COLORS[badgeColor]} inline-block rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs font-semibold uppercase tracking-wider`}
             >
               {badge}
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl">
+          <h2 className="text-2xl font-bold leading-tight tracking-tight text-black sm:text-3xl md:text-4xl lg:text-5xl">
             {headline}
           </h2>
 
           {/* Description */}
-          <p className="text-base leading-relaxed text-black/70 sm:text-lg">
+          <p className="text-sm leading-relaxed text-black/70 sm:text-base lg:text-lg">
             {description}
           </p>
 
           {/* Benefits List */}
-          <ul className="space-y-3">
+          <ul className="space-y-2 sm:space-y-3">
             {benefits.map((benefit, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <div className="mt-1 flex-shrink-0">
+              <li key={index} className="flex items-start gap-2 sm:gap-3">
+                <div className="mt-0.5 flex-shrink-0 sm:mt-1">
                   <svg
-                    className="h-5 w-5 text-blue-600"
+                    className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -85,14 +85,14 @@ export function ProblemSolutionCard({
                     />
                   </svg>
                 </div>
-                <span className="text-sm font-medium text-black/80">{benefit}</span>
+                <span className="text-xs font-medium text-black/80 sm:text-sm">{benefit}</span>
               </li>
             ))}
           </ul>
 
           {/* CTA Button */}
-          <div className="pt-4">
-            <Button size="lg" className="rounded-xl px-8" asChild>
+          <div className="pt-2 sm:pt-4">
+            <Button size="lg" className="rounded-xl px-6 py-3 h-12 text-base w-full sm:w-auto sm:px-8" asChild>
               <Link href={ctaHref}>{ctaText}</Link>
             </Button>
           </div>

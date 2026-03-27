@@ -144,34 +144,34 @@ export default function CalculatorPage() {
   return (
     <CalculatorProvider>
       <InvestmentProvider>
-        <main className="min-h-svh bg-white px-4 py-10 sm:px-6 lg:px-8">
+        <main className="min-h-svh bg-white px-4 py-6 sm:py-8 md:py-10 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-7xl">
             {/* Header */}
-            <div className="mb-10 flex items-start justify-between gap-4">
-              <div className="space-y-2">
-                <p className="text-sm font-medium uppercase tracking-wide text-black/70">PesoWise Calculator</p>
-                <h1 className="text-4xl font-semibold tracking-tight text-black">
+            <div className="mb-6 sm:mb-8 md:mb-10 flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
+              <div className="space-y-1 sm:space-y-2">
+                <p className="text-xs sm:text-sm font-medium uppercase tracking-wide text-black/70">PesoWise Calculator</p>
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-black">
                   {activeTab === 'savings'
                     ? 'Savings Projection'
                     : 'Investment Growth'} Simulator
                 </h1>
-                <p className="text-base text-black/70">
+                <p className="text-xs sm:text-sm md:text-base text-black/70">
                   {activeTab === 'savings'
                     ? 'Enter your values and compare estimated outcomes across supported platforms.'
                     : 'Project your investment growth across different scenarios.'}
                 </p>
               </div>
 
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild className="h-10 sm:h-12 text-sm sm:text-base w-full sm:w-auto">
                 <Link href="/">Back Home</Link>
               </Button>
             </div>
 
             {/* Tab Navigation */}
-            <div className="mb-8 flex gap-4 border-b border-gray-200">
+            <div className="mb-6 sm:mb-8 flex gap-2 sm:gap-4 border-b border-gray-200 overflow-x-auto">
               <button
                 onClick={() => setActiveTab('savings')}
-                className={`px-4 py-3 font-medium transition-colors ${
+                className={`px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base font-medium transition-colors whitespace-nowrap ${
                   activeTab === 'savings'
                     ? 'border-b-2 border-blue-600 text-blue-600'
                     : 'text-gray-600 hover:text-gray-900'
@@ -181,7 +181,7 @@ export default function CalculatorPage() {
               </button>
               <button
                 onClick={() => setActiveTab('investing')}
-                className={`px-4 py-3 font-medium transition-colors ${
+                className={`px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base font-medium transition-colors whitespace-nowrap ${
                   activeTab === 'investing'
                     ? 'border-b-2 border-blue-600 text-blue-600'
                     : 'text-gray-600 hover:text-gray-900'
@@ -193,14 +193,14 @@ export default function CalculatorPage() {
 
             {/* Savings Tab */}
             {activeTab === 'savings' && (
-              <div className="grid gap-8 lg:grid-cols-3">
+              <div className="grid gap-6 sm:gap-8 md:gap-8 lg:grid-cols-3">
                 {/* Left column: Calculator form + Disclaimer */}
-                <div className="lg:col-span-1 space-y-4">
+                <div className="lg:col-span-1 space-y-3 sm:space-y-4">
                   <CalculatorShell />
                   
                   {/* Disclaimer */}
-                  <div className="space-y-2">
-                    <h3 className="text-sm font-semibold text-black/70">Disclaimer</h3>
+                  <div className="space-y-2 px-3 sm:px-4 py-3 sm:py-4 rounded-lg bg-gray-50">
+                    <h3 className="text-xs sm:text-sm font-semibold text-black/70">Disclaimer</h3>
                     <p className="text-xs text-black/60 leading-relaxed">
                       This calculator is for informational purposes only and not financial advice. 
                       Rates and terms may vary by institution. Please verify directly with the 
@@ -210,7 +210,7 @@ export default function CalculatorPage() {
                 </div>
 
                 {/* Right column: Comparison results */}
-                <div className="lg:col-span-2 space-y-8">
+                <div className="lg:col-span-2 space-y-6 sm:space-y-8">
                   <GrowthChart />
                   <ComparisonShell platformNames={content.platformPlaceholders} />
                 </div>
@@ -219,14 +219,14 @@ export default function CalculatorPage() {
 
             {/* Investing Tab */}
             {activeTab === 'investing' && (
-              <div className="grid gap-8 lg:grid-cols-3">
+              <div className="grid gap-6 sm:gap-8 md:gap-8 lg:grid-cols-3">
                 {/* Left column: Mode selector + Calculator forms + Disclaimer */}
-                <div className="lg:col-span-1 space-y-4">
+                <div className="lg:col-span-1 space-y-3 sm:space-y-4">
                   {/* Mode Selector */}
-                  <div className="flex gap-4 border-b border-gray-200">
+                  <div className="flex gap-2 sm:gap-4 border-b border-gray-200 overflow-x-auto">
                     <button
                       onClick={() => setCalculatorMode('projection')}
-                      className={`px-4 py-3 font-medium transition-colors ${
+                      className={`px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
                         calculatorMode === 'projection'
                           ? 'border-b-2 border-blue-600 text-blue-600'
                           : 'text-gray-600 hover:text-gray-900'
@@ -236,7 +236,7 @@ export default function CalculatorPage() {
                     </button>
                     <button
                       onClick={() => setCalculatorMode('goalBased')}
-                      className={`px-4 py-3 font-medium transition-colors ${
+                      className={`px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
                         calculatorMode === 'goalBased'
                           ? 'border-b-2 border-blue-600 text-blue-600'
                           : 'text-gray-600 hover:text-gray-900'
@@ -253,8 +253,8 @@ export default function CalculatorPage() {
                   )}
                   
                   {/* Disclaimer */}
-                  <div className="space-y-2">
-                    <h3 className="text-sm font-semibold text-black/70">Disclaimer</h3>
+                  <div className="space-y-2 px-3 sm:px-4 py-3 sm:py-4 rounded-lg bg-gray-50">
+                    <h3 className="text-xs sm:text-sm font-semibold text-black/70">Disclaimer</h3>
                     <p className="text-xs text-black/60 leading-relaxed">
                       Projections are estimates based on historical assumptions and are not 
                       guaranteed. Actual investment returns may vary. This tool is for educational 

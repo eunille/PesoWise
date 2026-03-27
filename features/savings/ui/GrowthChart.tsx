@@ -113,8 +113,8 @@ export function GrowthChart() {
         </Select>
       </div>
 
-      <div className="rounded-lg border border-border/70 bg-white p-4">
-        <ResponsiveContainer width="100%" height={300}>
+      <div className="rounded-lg border border-border/70 bg-white p-3 sm:p-4">
+        <ResponsiveContainer width="100%" height={250} minHeight={250} className="sm:h-[300px] lg:h-[400px]">
           <LineChart data={monthlyData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="0" stroke="#e5e7eb" />
             <XAxis

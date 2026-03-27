@@ -23,14 +23,17 @@ export function InvestingGrowthChart() {
   // Empty state
   if (!allProjections) {
     return (
-      <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-gray-200 bg-gray-50 py-12">
-        <TrendingUp size={32} className="text-gray-400" />
-        <h3 className="text-center text-sm font-semibold text-gray-700">
-          Ready to grow your investments?
-        </h3>
-        <p className="text-center text-xs text-gray-600">
-          Run a projection to see your growth chart
-        </p>
+      <div className="space-y-4">
+        <div>
+          <h3 className="text-lg font-semibold text-black">Investment Projection</h3>
+        </div>
+        <div className="rounded-lg border border-border/70 bg-white p-12">
+          <div className="flex flex-col items-center justify-center text-center">
+            <TrendingUp className="mb-4 h-12 w-12 text-gray-300" />
+            <p className="text-base font-medium text-black/80">Ready to grow your investments?</p>
+            <p className="mt-1 text-sm text-black/60">Run a projection to see your growth chart</p>
+          </div>
+        </div>
       </div>
     );
   }
@@ -62,7 +65,7 @@ export function InvestingGrowthChart() {
       </div>
 
       {/* Chart */}
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={250} minHeight={250} className="sm:h-[300px] lg:h-[400px]">
         <LineChart
           data={chartData}
           margin={{ top: 5, right: 15, left: 0, bottom: 5 }}

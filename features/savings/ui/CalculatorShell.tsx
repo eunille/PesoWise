@@ -49,10 +49,14 @@ export function CalculatorShell() {
             </label>
             <Input
               id="initial-amount"
-              inputMode="decimal"
+              type="number"
+              inputMode="numeric"
               placeholder="Enter amount (e.g., 5000)"
               value={initialAmountInput}
               onChange={(e) => setInitialAmountInput(e.target.value)}
+              min="0"
+              step="1"
+              max="9999999999"
             />
           </div>
 
@@ -102,10 +106,14 @@ export function CalculatorShell() {
                 </label>
                 <Input
                   id="monthly-topup"
-                  inputMode="decimal"
+                  type="number"
+                  inputMode="numeric"
                   placeholder="Enter amount (optional, e.g., 1000)"
                   value={monthlyTopupInput}
                   onChange={(e) => setMonthlyTopupInput(e.target.value)}
+                  min="0"
+                  step="1"
+                  max="9999999999"
                 />
               </div>
             </div>

@@ -70,10 +70,14 @@ export function InvestingCalculator() {
             </label>
             <Input
               id="initial-amount"
-              inputMode="decimal"
+              type="number"
+              inputMode="numeric"
               placeholder="Enter amount (e.g., 10000)"
               value={initialAmount || ''}
               onChange={(e) => setInitialAmount(Number(e.target.value) || 0)}
+              min="0"
+              step="1"
+              max="9999999999"
             />
           </div>
 
@@ -127,12 +131,16 @@ export function InvestingCalculator() {
                 </label>
                 <Input
                   id="monthly-contribution"
-                  inputMode="decimal"
+                  type="number"
+                  inputMode="numeric"
                   placeholder="Enter amount (optional, e.g., 5000)"
                   value={monthlyContribution || ''}
                   onChange={(e) =>
                     setMonthlyContribution(Number(e.target.value) || 0)
                   }
+                  min="0"
+                  step="1"
+                  max="9999999999"
                 />
               </div>
 

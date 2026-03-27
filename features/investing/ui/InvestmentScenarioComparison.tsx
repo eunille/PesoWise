@@ -22,14 +22,17 @@ export function InvestmentScenarioComparison() {
   // Show empty state if no calculations yet
   if (!allProjections) {
     return (
-      <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-gray-200 bg-gray-50 py-12">
-        <TrendingUp size={32} className="text-gray-400" />
-        <h3 className="text-center text-sm font-semibold text-gray-700">
-          Pick a scenario to see results
-        </h3>
-        <p className="text-center text-xs text-gray-600">
-          Run a projection above to compare growth across scenarios
-        </p>
+      <div className="space-y-4">
+        <div>
+          <h3 className="text-lg font-semibold text-black">Scenario Comparison</h3>
+        </div>
+        <div className="rounded-lg border border-border/70 bg-white p-12">
+          <div className="flex flex-col items-center justify-center text-center">
+            <TrendingUp className="mb-4 h-12 w-12 text-gray-300" />
+            <p className="text-base font-medium text-black/80">Pick a scenario to see results</p>
+            <p className="mt-1 text-sm text-black/60">Run a projection above to compare growth across scenarios</p>
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import { MobileNav } from "@/components/MobileNav"
 
 const NAV_ITEMS = [
   { href: "/", label: "Home" },
@@ -12,10 +13,10 @@ const NAV_ITEMS = [
 export function MainNav() {
   return (
     <header className="w-full">
-      <nav className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex h-16 sm:h-18 md:h-20 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="flex items-center justify-center"
+          className="flex items-center justify-center flex-shrink-0"
           aria-label="PesoWise Home"
         >
           <Image
@@ -23,22 +24,28 @@ export function MainNav() {
             alt="PesoWise"
             width={70}
             height={70}
-            className="w-auto h-48"
+            className="w-32 h-32 sm:w-14 sm:h-14 md:w-44 md:h-44 object-contain"
           />
         </Link>
 
-        <ul className="mx-2 flex flex-1 items-center justify-center gap-3 overflow-x-auto px-2 sm:mx-4 sm:gap-6 lg:gap-8">
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex items-center justify-center gap-6 lg:gap-8 flex-1 mx-4">
           {NAV_ITEMS.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="text-sm text-black/80 transition-colors hover:text-black"
+                className="text-sm text-black/80 transition-colors hover:text-black font-medium"
               >
                 {item.label}
               </Link>
             </li>
           ))}
         </ul>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <MobileNav />
+        </div>
       </nav>
     </header>
   )

@@ -89,10 +89,14 @@ export function GoalBasedCalculator({ onCalculated }: GoalBasedCalculatorProps) 
             </label>
             <Input
               id="target-amount"
-              inputMode="decimal"
+              type="number"
+              inputMode="numeric"
               placeholder="Enter target amount (e.g., 500000)"
               value={targetAmount || ''}
               onChange={(e) => setTargetAmount(Number(e.target.value) || 0)}
+              min="0"
+              step="1"
+              max="9999999999"
             />
           </div>
 

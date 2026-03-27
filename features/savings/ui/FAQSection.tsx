@@ -53,21 +53,21 @@ function FAQItem({
   readonly toggle: () => void
 }) {
   return (
-    <div className="border-b border-border/50 py-4">
+    <div className="border-b border-border/50 py-3 sm:py-4">
       <button
         onClick={toggle}
-        className="flex w-full items-start justify-between gap-4 text-left transition-colors hover:text-blue-600"
+        className="flex w-full items-start justify-between gap-3 sm:gap-4 text-left transition-colors hover:text-blue-600"
       >
-        <span className="text-lg font-medium text-black">{question}</span>
+        <span className="text-sm sm:text-base lg:text-lg font-medium text-black leading-snug">{question}</span>
         <ChevronDown
-          className={`mt-1 size-5 flex-shrink-0 transition-transform duration-300 text-blue-600 ${
+          className={`mt-0.5 sm:mt-1 size-4 sm:size-5 flex-shrink-0 transition-transform duration-300 text-blue-600 ${
             isOpen ? 'rotate-180' : ''
           }`}
           aria-hidden="true"
         />
       </button>
       {isOpen && (
-        <div className="mt-3 text-base leading-relaxed text-black/70">
+        <div className="mt-2 sm:mt-3 text-xs sm:text-sm lg:text-base leading-relaxed text-black/70">
           {answer}
         </div>
       )}
@@ -79,15 +79,15 @@ export function FAQSection() {
   const [expandedId, setExpandedId] = useState<number | null>(null)
 
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mb-12 text-center">
-        <h2 className="text-5xl font-semibold tracking-tight text-black">Frequently Asked Questions</h2>
-        <p className="mt-4 text-lg text-black/70">These are the questions we hear more often.</p>
+    <section className="mx-auto w-full max-w-6xl px-4 py-12 sm:py-16 md:py-20 lg:py-24 sm:px-6 lg:px-8">
+      <div className="mb-8 sm:mb-10 md:mb-12 text-center">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-black">Frequently Asked Questions</h2>
+        <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-black/70">These are the questions we hear more often.</p>
       </div>
 
-      <div className="grid gap-12 lg:grid-cols-2">
+      <div className="grid gap-8 sm:gap-10 md:gap-12 lg:grid-cols-2">
         {/* FAQ List */}
-        <div className="space-y-1">
+        <div className="space-y-0">
           {FAQ_ITEMS.map((item) => (
             <FAQItem
               key={item.id}
@@ -100,13 +100,13 @@ export function FAQSection() {
         </div>
 
         {/* CTA Section */}
-        <div className="flex items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 p-8 text-center lg:h-full lg:items-center">
-          <div className="space-y-6">
+        <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6 sm:p-8 text-center lg:p-8 lg:h-auto flex items-center justify-center">
+          <div className="space-y-4 sm:space-y-6">
             <div>
-              <h3 className="text-2xl font-semibold text-black">Don&apos;t see the answer you need?</h3>
-              <p className="mt-2 text-base text-black/70">That&apos;s ok. Just drop a message and we will get back to you ASAP.</p>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-black">Don&apos;t see the answer you need?</h3>
+              <p className="mt-2 text-xs sm:text-sm lg:text-base text-black/70">That&apos;s ok. Just drop a message and we will get back to you ASAP.</p>
             </div>
-            <Button size="lg" className="rounded-xl px-8" asChild>
+            <Button size="lg" className="rounded-xl px-6 sm:px-8 py-3 h-12 text-base w-full sm:w-auto" asChild>
               <a href="mailto:hello@pesowise.ph">Contact us</a>
             </Button>
           </div>
