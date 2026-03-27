@@ -40,7 +40,7 @@ export function GrowthChart() {
           <div className="flex flex-col items-center justify-center text-center">
             <BarChart3 className="mb-4 h-12 w-12 text-gray-300" />
             <p className="text-base font-medium text-black/80">Ready to grow your savings?</p>
-            <p className="mt-1 text-sm text-black/60">Fill in your details and click "Run Estimate"</p>
+            <p className="mt-1 text-sm text-black/60">Fill in your details and click &quot;Run Estimate&quot;</p>
           </div>
         </div>
       </div>

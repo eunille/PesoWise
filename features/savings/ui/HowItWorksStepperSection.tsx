@@ -46,39 +46,12 @@ const INVESTING_STEPS: Step[] = [
 
 export function HowItWorksStepperSection() {
   const [activeTab, setActiveTab] = useState<'savings' | 'investing'>('savings')
-  const [visibleSteps, setVisibleSteps] = useState<number[]>([])
   const [scrollProgress, setScrollProgress] = useState(0)
   const [stepsProgress, setStepsProgress] = useState<Record<number, number>>({})
   const sectionRef = useRef<HTMLElement>(null)
   const stepsRefsMap = useRef<Record<number, HTMLDivElement | null>>({})
 
   const steps = activeTab === 'savings' ? SAVINGS_STEPS : INVESTING_STEPS
-
-  useEffect(() => {
-    setVisibleSteps([])
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const stepIndex = parseInt(entry.target.getAttribute('data-step') || '0')
-            setVisibleSteps((prev) => {
-              if (!prev.includes(stepIndex)) {
-                return [...prev, stepIndex]
-              }
-              return prev
-            })
-          }
-        })
-      },
-      { threshold: 0.3 }
-    )
-
-    const stepElements = sectionRef.current?.querySelectorAll('[data-step]')
-    stepElements?.forEach((el) => observer.observe(el))
-
-    return () => observer.disconnect()
-  }, [activeTab])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -189,7 +162,6 @@ export function HowItWorksStepperSection() {
         />
 
         {steps.map((step) => {
-          const isVisible = visibleSteps.includes(step.number)
           const isLeft = step.number % 2 === 1
 
           // Determine circle color based on step

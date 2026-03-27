@@ -103,8 +103,8 @@ export function FAQSection() {
         <div className="flex items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 p-8 text-center lg:h-full lg:items-center">
           <div className="space-y-6">
             <div>
-              <h3 className="text-2xl font-semibold text-black">Don't see the answer you need?</h3>
-              <p className="mt-2 text-base text-black/70">That's ok. Just drop a message and we will get back to you ASAP.</p>
+              <h3 className="text-2xl font-semibold text-black">Don&apos;t see the answer you need?</h3>
+              <p className="mt-2 text-base text-black/70">That&apos;s ok. Just drop a message and we will get back to you ASAP.</p>
             </div>
             <Button size="lg" className="rounded-xl px-8" asChild>
               <a href="mailto:hello@pesowise.ph">Contact us</a>

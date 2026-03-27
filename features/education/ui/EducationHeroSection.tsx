@@ -31,7 +31,7 @@ export function EducationHeroSection() {
           <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
             Master the fundamentals of investing with bite-sized lessons. 
             From understanding index funds to navigating market volatility, 
-            we'll guide you through the concepts that matter.
+            we&apos;ll guide you through the concepts that matter.
           </p>
         </div>
       </div>
