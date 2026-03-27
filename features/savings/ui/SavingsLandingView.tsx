@@ -25,12 +25,12 @@ export function SavingsLandingView() {
       <ProblemSolutionCard
         badge="THE PROBLEM"
         badgeColor="blue"
-        headline="Streamline Savings With Seamless Projections"
-        description="Get instant, transparent projections across all platforms with clear assumptions—right in your browser."
+        headline="People Don't Know Where To Save Or Invest"
+        description="Most people and students aren't sure where their money should go. They don't understand the real advantages of saving versus investing. With so many banks and financial products available, choosing the right one feels overwhelming."
         benefits={[
-          "Real-time projection tracking",
-          "Compare providers in one place",
-          "Transparent assumptions every time",
+          "Confused about saving vs. investing — what's the difference?",
+          "Too many banks and products to compare easily",
+          "No clear way to see which choice actually works best for you",
         ]}
         ctaText="Create Calculation"
         ctaHref="/calculator?tab=savings"
@@ -48,12 +48,12 @@ export function SavingsLandingView() {
       <ProblemSolutionCard
         badge="THE CHALLENGE"
         badgeColor="amber"
-        headline="Plan Smarter With Ease"
-        description="With constantly changing rates and multiple products, outdated information leads to poor savings decisions. Always get verified, up-to-date data."
+        headline="Without Clear Comparisons, You Make Worse Financial Decisions"
+        description="When you can't easily compare your options side-by-side, you either give up and stick with whatever your bank suggests, or make decisions based on incomplete information. Interest rates change constantly, and outdated data means you're losing money without realizing it."
         benefits={[
-          "Daily rate updates from verified sources",
-          "Clear confidence scoring and transparency",
-          "Know exactly when information was verified",
+          "It's easy to accidentally choose the worst option for YOUR situation",
+          "You might miss better savings growth from another bank or product",
+          "Rate changes leave you with stale information that costs you real money",
         ]}
         ctaText="Compare & Calculate"
         ctaHref="/calculator?tab=savings"
