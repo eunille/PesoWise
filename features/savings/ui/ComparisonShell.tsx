@@ -14,9 +14,10 @@ type ComparisonShellProps = {
 
 export function ComparisonShell({ platformNames = [] }: ComparisonShellProps) {
   const { state } = useCalculatorState()
-  const { allPlatformProjections, isLoading } = state
+  const { allPlatformProjections, isLoading, selectedBanks } = state
 
-  const platformIds = PLATFORM_IDS
+  // Filter platforms to show only selected ones
+  const platformIds = selectedBanks.length > 0 ? selectedBanks : PLATFORM_IDS
   const hasCalculations = Object.keys(allPlatformProjections).length > 0
 
   if (!hasCalculations) {

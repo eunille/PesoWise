@@ -9,6 +9,7 @@ export interface CalculatorState {
   monthlyTopup: number
   monthsHorizon: number
   selectedPlatform: string | null
+  selectedBanks: string[] // New: track which banks to display
   allPlatformProjections: Record<string, ProjectionResult>
   isLoading: boolean
   error: string | null
@@ -20,18 +21,24 @@ interface CalculatorContextType {
   setMonthlyTopup: (amount: number) => void
   setMonthsHorizon: (months: number) => void
   selectPlatform: (platformId: string | null) => void
-  runEstimate: (amount: number, monthlyTopup: number, months: number) => void
+  setSelectedBanks: (bankIds: string[]) => void // New: set banks to compare
+  toggleBank: (bankId: string) => void // New: toggle individual bank
   reset: () => void
+  runEstimate: (amount: number, monthlyTopup: number, months: number) => void
 }
 
 const CalculatorContext = createContext<CalculatorContextType | undefined>(undefined)
 
 export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // Recommended banks for default display: GoTyme, Maya, MariBank (highest rates)
+  const DEFAULT_RECOMMENDED_BANKS = ['gotyme', 'maya', 'maribank']
+
   const [state, setState] = useState<CalculatorState>({
     initialAmount: 5000,
     monthlyTopup: 0,
     monthsHorizon: 6,
     selectedPlatform: null,
+    selectedBanks: DEFAULT_RECOMMENDED_BANKS,
     allPlatformProjections: {},
     isLoading: false,
     error: null,
@@ -55,6 +62,28 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       selectedPlatform: platformId,
       error: null,
     }))
+  }, [])
+
+  const setSelectedBanks = useCallback((bankIds: string[]) => {
+    setState(prev => ({
+      ...prev,
+      selectedBanks: bankIds,
+      error: null,
+    }))
+  }, [])
+
+  const toggleBank = useCallback((bankId: string) => {
+    setState(prev => {
+      const isSelected = prev.selectedBanks.includes(bankId)
+      const newSelectedBanks = isSelected
+        ? prev.selectedBanks.filter(id => id !== bankId)
+        : [...prev.selectedBanks, bankId]
+      return {
+        ...prev,
+        selectedBanks: newSelectedBanks,
+        error: null,
+      }
+    })
   }, [])
 
   const runEstimate = useCallback((amount: number, monthlyTopup: number, months: number) => {
@@ -110,6 +139,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       monthlyTopup: 0,
       monthsHorizon: 6,
       selectedPlatform: null,
+      selectedBanks: DEFAULT_RECOMMENDED_BANKS,
       allPlatformProjections: {},
       isLoading: false,
       error: null,
@@ -122,6 +152,8 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     setMonthlyTopup,
     setMonthsHorizon,
     selectPlatform,
+    setSelectedBanks,
+    toggleBank,
     runEstimate,
     reset,
   }

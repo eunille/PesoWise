@@ -15,32 +15,36 @@ export const PLATFORMS: Record<string, Platform> = {
   GOTYME: {
     id: 'gotyme',
     name: 'GoTyme',
-    baseAPY: 0.045, // 4.5% APY
-    description: 'Digital banking with competitive savings rates',
+    baseAPY: 0.035, // 3.5% APY (verified 3%-4% range)
+    description: 'Digital banking platform',
   },
   MAYA: {
     id: 'maya',
     name: 'Maya',
-    baseAPY: 0.04, // 4.0% APY
-    description: 'Mobile-first banking platform',
+    baseAPY: 0.035, // 3.5% APY (base rate)
+    description: 'Digital fintech savings platform',
   },
   GSAVE: {
     id: 'gsave',
     name: 'GSave',
-    baseAPY: 0.055, // 5.5% APY
-    description: 'CIMB high-yield savings account',
+    baseAPY: 0.025, // 2.5% APY (CIMB partnership)
+    description: 'CIMB Bank savings account via GCash',
   },
   MARIBANK: {
     id: 'maribank',
     name: 'MariBank',
-    baseAPY: 0.06, // 6.0% APY
-    description: 'Maritime-focused banking with savings products',
+    baseAPY: 0.0325, // 3.25% APY (tier-based rate)
+    description: 'Digital banking with tiered savings rates',
   },
-  PDIC: {
-    id: 'pdic',
-    name: 'PDIC',
-    baseAPY: 0.005, // 0.5% APY
-    description: 'Philippine Deposit Insurance Corporation',
+  UNIONDIGITAL: {
+    id: 'uniondigital',
+    name: 'UnionDigital',
+    baseAPY: 0.0325, // 3.25% APY (mid-range of 3.0% - 3.5%)\n    description: 'Union Bank digital savings account',
+  },
+  TONIK: {
+    id: 'tonik',
+    name: 'Tonik',
+    baseAPY: 0.025, // 2.5% APY (conservative estimate)\n    description: 'Digital bank with flexible savings options',
   },
 }
 

@@ -21,7 +21,7 @@ const FAQ_ITEMS = [
     id: 3,
     question: 'Which platforms does PesoWise support?',
     answer:
-      'Currently, we compare GoTyme Bank, Maya Bank, GSave/CIMB Bank, MariBank, and PDIC insurance savings. We are actively adding more platforms to expand your options.',
+      'Currently, we compare GoTyme, Maya, GSave (CIMB), MariBank, UnionDigital, and Tonik—leading digital banks offering competitive savings rates in the Philippines. We are actively adding more platforms to expand your options.',
   },
   {
     id: 4,

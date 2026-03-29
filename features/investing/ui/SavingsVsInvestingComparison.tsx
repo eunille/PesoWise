@@ -4,16 +4,17 @@
  * Savings vs Investing Comparison
  *
  * Compares the same investment inputs under two strategies:
- * 1. Savings: Using a bank's savings rate (GoTyme 5.5%)
+ * 1. Savings: Using a bank's savings rate (GoTyme 3.5%)
  * 2. Investing: Using the selected investment scenario
  *
- * Shows side-by-side final balances, gains, and insights.
+ * Shows side-by-side final balances and concise insights with minimal information overload.
  */
 
-import { TrendingUp } from 'lucide-react';
-import { useInvestmentState } from '@/hooks/useInvestmentState';
-import { INVESTMENT_SCENARIOS } from '@/domain/investmentRates';
-import { getPlatformById } from '@/domain/platformRates';
+import { useState } from 'react'
+import { TrendingUp, ChevronDown } from 'lucide-react'
+import { useInvestmentState } from '@/hooks/useInvestmentState'
+import { INVESTMENT_SCENARIOS } from '@/domain/investmentRates'
+import { getPlatformById } from '@/domain/platformRates'
 
 function calculateSavingsBaseline(
   initialAmount: number,
@@ -21,71 +22,72 @@ function calculateSavingsBaseline(
   baseAPY: number,
   monthlyTopup: number
 ): { finalBalance: number; totalInterestEarned: number } {
-  const monthlyRate = baseAPY / 12;
-  let balance = Math.max(0, initialAmount);
-  let interestEarned = 0;
+  const monthlyRate = baseAPY / 12
+  let balance = Math.max(0, initialAmount)
+  let interestEarned = 0
 
   for (let month = 1; month <= durationMonths; month++) {
-    balance += Math.max(0, monthlyTopup);
-    const monthlyInterest = balance * monthlyRate;
-    balance += monthlyInterest;
-    interestEarned += monthlyInterest;
+    balance += Math.max(0, monthlyTopup)
+    const monthlyInterest = balance * monthlyRate
+    balance += monthlyInterest
+    interestEarned += monthlyInterest
   }
 
   return {
     finalBalance: balance,
     totalInterestEarned: interestEarned,
-  };
+  }
 }
 
 export function SavingsVsInvestingComparison() {
   const { initialAmount, monthlyContribution, durationMonths, selectedScenario, allProjections } =
-    useInvestmentState();
+    useInvestmentState()
+  const [showDetails, setShowDetails] = useState(false)
 
   // Don't show if no calculations yet
   if (!allProjections) {
-    return null;
+    return null
   }
 
   // Get investing projection
-  const investingProj = allProjections[selectedScenario];
-  const investingScenario = INVESTMENT_SCENARIOS[selectedScenario];
+  const investingProj = allProjections[selectedScenario]
+  const investingScenario = INVESTMENT_SCENARIOS[selectedScenario]
 
   // Calculate savings projection using GoTyme baseline APY
-  const savingsPlatform = getPlatformById('gotyme');
-  if (!savingsPlatform) return null;
+  const savingsPlatform = getPlatformById('gotyme')
+  if (!savingsPlatform) return null
 
   const savingsProj = calculateSavingsBaseline(
     initialAmount,
     durationMonths,
     savingsPlatform.baseAPY,
     monthlyContribution
-  );
+  )
 
   // Calculate differences
-  const balanceDiff = investingProj.finalBalance - savingsProj.finalBalance;
+  const balanceDiff = investingProj.finalBalance - savingsProj.finalBalance
   const percentageAdvantage = savingsProj.finalBalance > 0
     ? ((balanceDiff / savingsProj.finalBalance) * 100)
-    : 0;
+    : 0
 
   // Generate insight based on time horizon
-  const yearsHorizon = durationMonths / 12;
-  let insight = '';
+  const yearsHorizon = durationMonths / 12
+  let insight = ''
   if (yearsHorizon < 2) {
-    insight = 'Short timeframe—both strategies are conservative. Savings offers more stability.';
+    insight = 'Short timeframe — savings offers more stability.'
   } else if (yearsHorizon < 5) {
-    insight = 'Moderate timeframe—investing can start to show an advantage as compound growth kicks in.';
+    insight = 'Moderate timeframe — investing can start to show an advantage.'
   } else if (yearsHorizon < 10) {
-    insight = 'Long timeframe—compound growth significantly favors investing. Monthly contributions amplify this effect.';
+    insight = 'Long timeframe — compound growth significantly favors investing.'
   } else {
-    insight = 'Very long timeframe—investing can weather short-term volatility and historically outperforms. This is the sweet spot for index fund investing.';
+    insight = 'Very long timeframe — investing historically outperforms and can weather volatility.'
   }
 
-  const isInvestingBetter = investingProj.finalBalance > savingsProj.finalBalance;
+  const isInvestingBetter = investingProj.finalBalance > savingsProj.finalBalance
 
   return (
     <div className="space-y-3">
-      {/* Side-by-side comparison cards */}
+      {/* SIMPLIFIED: Side-by-side comparison cards - minimal info */}
       <div className="grid gap-3 md:grid-cols-2">
         {/* Savings Card */}
         <div className="rounded-lg border border-blue-100 bg-blue-50 p-4">
@@ -113,11 +115,6 @@ export function SavingsVsInvestingComparison() {
                 ₱{savingsProj.totalInterestEarned.toLocaleString('en-PH', { maximumFractionDigits: 0 })}
               </p>
             </div>
-          </div>
-
-          <div className="mt-3 rounded-lg bg-blue-100 px-2 py-1">
-            <p className="text-xs font-medium text-blue-900">Pros: Safe, guaranteed interest</p>
-            <p className="text-xs text-blue-800">Cons: Limited growth potential</p>
           </div>
         </div>
 
@@ -160,52 +157,62 @@ export function SavingsVsInvestingComparison() {
               </p>
             </div>
           </div>
-
-          <div className={`mt-3 rounded-lg px-2 py-1 ${
-            isInvestingBetter ? 'bg-green-100' : 'bg-amber-100'
-          }`}>
-            <p className={`text-xs font-medium ${
-              isInvestingBetter ? 'text-green-900' : 'text-amber-900'
-            }`}>
-              Pros: Higher long-term growth potential
-            </p>
-            <p className={`text-xs ${
-              isInvestingBetter ? 'text-green-800' : 'text-amber-800'
-            }`}>
-              Cons: Subject to market volatility
-            </p>
-          </div>
         </div>
       </div>
 
-      {/* Difference/Advantage Section */}
-      {isInvestingBetter && (
-        <div className="rounded-lg border border-green-200 bg-green-50 p-4">
-          <div className="flex items-center gap-2">
-            <TrendingUp size={18} className="text-green-600" />
+      {/* COMBINED: Advantage + Insight in one concise card */}
+      <div className={`rounded-lg border p-3 ${
+        isInvestingBetter
+          ? 'border-green-200 bg-green-50'
+          : 'border-amber-200 bg-amber-50'
+      }`}>
+        <p className={`text-xs font-semibold ${
+          isInvestingBetter ? 'text-green-900' : 'text-amber-900'
+        }`}>
+          {isInvestingBetter ? `📈 Investing leads by ₱${balanceDiff.toLocaleString('en-PH', { maximumFractionDigits: 0 })} (+${percentageAdvantage.toFixed(1)}%)` : '📊 Savings is more stable'}
+        </p>
+        <p className={`mt-1 text-xs leading-relaxed ${
+          isInvestingBetter ? 'text-green-800' : 'text-amber-800'
+        }`}>
+          {insight}
+        </p>
+      </div>
+
+      {/* COLLAPSIBLE: Details & Explanations */}
+      <div className="border border-gray-200 rounded-lg">
+        <button
+          onClick={() => setShowDetails(!showDetails)}
+          className="w-full flex items-center gap-2 p-3 hover:bg-gray-50 transition-colors"
+        >
+          <ChevronDown
+            size={16}
+            className={`text-gray-600 transition-transform ${showDetails ? 'rotate-180' : ''}`}
+          />
+          <span className="text-xs font-medium text-gray-700">Why the difference? Why each strategy?</span>
+        </button>
+
+        {showDetails && (
+          <div className="border-t border-gray-200 p-3 space-y-3 bg-gray-50 text-xs text-gray-700">
             <div>
-              <p className="text-sm font-semibold text-gray-900">
-                Investing Advantage: ₱{balanceDiff.toLocaleString('en-PH', { maximumFractionDigits: 0 })}
-              </p>
-              <p className="mt-1 text-xs text-gray-600">
-                That&apos;s a {percentageAdvantage.toFixed(1)}% higher final balance with the {investingScenario.name} scenario.
-              </p>
+              <p className="font-medium text-gray-900 mb-1">Savings Approach</p>
+              <p>• Safe, guaranteed interest from {savingsPlatform.name}</p>
+              <p>• No volatility or market risk</p>
+              <p>• Good for funds you'd need in the short term</p>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900 mb-1">Investing Approach</p>
+              <p>• Higher long-term growth potential</p>
+              <p>• Assumes {(investingScenario.annualReturnRate * 100).toFixed(0)}% annual return (subject to market volatility)</p>
+              <p>• Ideal for long-term goals where you can weather short-term fluctuations</p>
             </div>
           </div>
-        </div>
-      )}
-
-      {/* Insight */}
-      <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
-        <p className="text-xs font-semibold text-amber-900">Insight for Your Timeline:</p>
-        <p className="mt-1 text-xs text-amber-800 leading-relaxed">{insight}</p>
+        )}
       </div>
 
-      {/* Important Note */}
-      <div className="rounded-lg border border-gray-200 bg-gray-50 p-3">
+      {/* MINIMIZED DISCLAIMER */}
+      <div className="rounded-lg border border-gray-200 bg-gray-50 p-2.5">
         <p className="text-xs text-gray-700">
-          <strong>Note:</strong> Savings rates are guaranteed; investment returns are projections based on
-          historical averages. Actual results will vary. This comparison is for educational purposes only.
+          <strong>Note:</strong> Savings rates are guaranteed. Investment returns are projections and may vary. For educational purposes only.
         </p>
       </div>
     </div>

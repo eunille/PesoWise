@@ -10,7 +10,7 @@ PesoWise is a modern platform that helps Filipino savers understand their financ
 
 With so many savings products available in the Philippines, it's hard to know which one is right for you. PesoWise makes it simple:
 
-✓ **Compare Multiple Banks** - See how your money would grow at GoTyme, Maya, GSave, MariBank, and PDIC side-by-side
+✓ **Compare Multiple Banks** - See how your money would grow at GoTyme, Maya, GSave, MariBank, UnionDigital, and Tonik side-by-side
 
 ✓ **No Sign-Up Required** - Start comparing in seconds with zero friction
 
@@ -70,11 +70,12 @@ With so many savings products available in the Philippines, it's hard to know wh
 
 | Platform | Interest Rate | Best For |
 |----------|---------------|----------|
-| **GoTyme Bank** | 4.50% APY | Digital-first savers |
-| **Maya Bank** | 4.00% APY | Existing Maya users |
-| **GSave** | 5.50% APY | High-yield savings |
-| **MariBank** | 6.00% APY | Best returns |
-| **PDIC** | 0.50% APY | Maximum safety |
+| **GoTyme** | 3.50% APY | Digital-first savers |
+| **Maya** | 3.50% APY | Existing App users |
+| **GSave** | 2.50% APY | Via GCash savings |
+| **MariBank** | 3.25% APY | Tiered savings account |
+| **UnionDigital** | 3.25% APY | Union Bank digital account |
+| **Tonik** | 2.50% APY | Flexible savings options |
 
 ---
 
@@ -199,9 +200,6 @@ A: We don't collect personal data, so there's nothing to sell. Ever.
 
 **Q: Can I save my calculations?**
 A: Not yet, but you can take a screenshot or write down the results. Future versions may support saved calculations.
-
-**Q: Why is PDIC included with only 0.5% interest?**
-A: PDIC is the safest savings option for amounts up to ₱500,000. Some savers prioritize safety over returns.
 
 ---
 

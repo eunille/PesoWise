@@ -37,10 +37,10 @@ const PARTNERS: Partner[] = [
     height: 60,
   },
   {
-    name: 'PDIC',
-    logo: '/images/pdic.webp',
-    width: 120,
-    height: 100,
+    name: 'Tonik',
+    logo: '/images/tonikwebp.webp',
+    width: 150,
+    height: 60,
   },
 ]
 

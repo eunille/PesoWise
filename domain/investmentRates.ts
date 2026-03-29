@@ -1,15 +1,19 @@
 /**
  * Investment Product Definitions & Return Scenarios
  *
- * Data-backed assumptions for Philippine index fund investing:
- * - Conservative: 5% APY (savings/bond blend, historical safety)
- * - Moderate: 8% APY (PSEi total return with dividends, realistic recovery)
- * - Growth: 12% APY (optimistic bull case, 2005-2015 era performance)
+ * Based on historical Philippine Stock Exchange (PSEi) performance
+ * and diversified portfolio analysis.
  *
- * All returns are dividend-adjusted (total return), not price-only.
- * Returns are nominal; real return = nominal - inflation (~3% historical).
+ * Rates represent realistic ranges, not guarantees:
+ * - Conservative: 3–5% APY (bonds + low-volatility instruments)
+ * - Moderate: 5–7% APY (PSEi total return with dividends, balanced approach)
+ * - Growth: 7–9% APY (equity-focused, higher volatility potential)
+ *
+ * All returns are dividend-adjusted (total return), nominal rates.
+ * Real return = nominal - inflation (~3% BSP target midpoint).
  *
  * Sources: PSE historical data, Philippine inflation (BSP), market analysis.
+ * Returns are NOT guaranteed and vary by market conditions.
  */
 
 export type ScenarioType = 'conservative' | 'moderate' | 'growth';
@@ -27,24 +31,24 @@ export const INVESTMENT_SCENARIOS: Record<ScenarioType, InvestmentScenario> = {
   conservative: {
     id: 'conservative',
     name: 'Conservative',
-    description: 'Savings + bond blend. Historically stable returns.',
-    annualReturnRate: 0.05,
+    description: 'Bonds + low-volatility mix (3–5% range). Historical safety focus.',
+    annualReturnRate: 0.04,
     riskLabel: 'Low Risk',
     color: 'blue-300', // Light blue for charts
   },
   moderate: {
     id: 'moderate',
     name: 'Moderate',
-    description: 'Philippine Stock Exchange (PSEi) index. Balanced approach.',
-    annualReturnRate: 0.08,
+    description: 'PSEi + diversified portfolio (5–7% range). Balanced approach.',
+    annualReturnRate: 0.06,
     riskLabel: 'Medium Risk',
     color: 'blue-600', // Medium blue for charts
   },
   growth: {
     id: 'growth',
     name: 'Growth',
-    description: 'Full PSEi exposure. Higher potential returns, higher volatility.',
-    annualReturnRate: 0.12,
+    description: 'Equity-focused with higher volatility (7–9% range). Bull market potential.',
+    annualReturnRate: 0.08,
     riskLabel: 'Higher Risk',
     color: 'blue-900', // Dark blue for charts
   },

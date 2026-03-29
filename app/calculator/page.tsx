@@ -7,6 +7,7 @@ import { ChevronDown } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 import { CalculatorShell } from "@/features/savings/ui/CalculatorShell"
 import { ComparisonShell } from "@/features/savings/ui/ComparisonShell"
+import { BankSelector } from "@/features/savings/ui/BankSelector"
 import { GrowthChart } from "@/features/savings/ui/GrowthChart"
 import { CalculatorProvider } from "@/hooks/useCalculatorState.tsx"
 import { InvestmentProvider, useInvestmentState } from "@/hooks/useInvestmentState"
@@ -152,8 +153,8 @@ export default function CalculatorPage() {
                 <p className="text-xs sm:text-sm font-medium uppercase tracking-wide text-black/70">PesoWise Calculator</p>
                 <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-black">
                   {activeTab === 'savings'
-                    ? 'Savings Projection'
-                    : 'Investment Growth'} Simulator
+                    ? 'Platform Comparison'
+                    : 'Investment Projection'}
                 </h1>
                 <p className="text-xs sm:text-sm md:text-base text-black/70">
                   {activeTab === 'savings'
@@ -212,7 +213,10 @@ export default function CalculatorPage() {
                 {/* Right column: Comparison results */}
                 <div className="lg:col-span-2 space-y-6 sm:space-y-8">
                   <GrowthChart />
-                  <ComparisonShell platformNames={content.platformPlaceholders} />
+                  <div className="space-y-4 sm:space-y-6">
+                    <BankSelector />
+                    <ComparisonShell platformNames={content.platformPlaceholders} />
+                  </div>
                 </div>
               </div>
             )}
