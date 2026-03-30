@@ -68,7 +68,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="flex flex-col items-center justify-between gap-4 text-center text-sm text-slate-400 sm:flex-row sm:text-left">
-          <p>&copy; 2025 PesoWise. All rights reserved. Built by Cataláyx Solutions.</p>
+          <p>&copy; 2026 PesoWise. All rights reserved. Built by Catalyx Solutions.</p>
           <div className="flex gap-6">
             <span>English (PH)</span>
           </div>

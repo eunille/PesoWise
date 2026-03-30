@@ -10,28 +10,28 @@ export function HeroVisual() {
 
           <div className="space-y-4">
             <div>
-              <p className="text-xs uppercase tracking-wide text-black/55">Projected balance</p>
-              <p className="text-3xl font-semibold tracking-tight text-black">PHP 14,089</p>
+              <p className="text-xs uppercase tracking-wide text-black/55">Example: After 12 months</p>
+              <p className="text-3xl font-semibold tracking-tight text-black">₱10,659</p>
             </div>
 
             <div className="grid grid-cols-2 gap-2 rounded-xl bg-blue-50/60 p-2 shadow-sm">
               <Badge className="justify-center" variant="secondary">
-                12 Months
+                Sample
               </Badge>
               <Badge className="justify-center" variant="outline">
-                Net of Tax
+                 Digital Bank
               </Badge>
             </div>
 
             <div>
-              <p className="text-xs uppercase tracking-wide text-black/55">Estimated interest</p>
-              <p className="text-2xl font-semibold text-black">PHP 1,469</p>
+              <p className="text-xs uppercase tracking-wide text-black/55">Interest Earned</p>
+              <p className="text-2xl font-semibold text-black">₱659</p>
             </div>
 
             <div className="space-y-2 rounded-xl border border-black/15 bg-black p-3 text-white">
-              <p className="text-xs text-white/70">Top platform snapshot</p>
-              <p className="text-sm font-medium text-white">MariBank Savings</p>
-              <p className="text-xs text-white/80">Verified Mar 2026 • High confidence</p>
+              <p className="text-xs text-white/70">Based on</p>
+              <p className="text-sm font-medium text-white">3.25% APY rate</p>
+              <p className="text-xs text-white/80">₱10,000 initial investment</p>
             </div>
           </div>
         </div>
@@ -39,22 +39,22 @@ export function HeroVisual() {
 
       <Card className="absolute right-0 top-20 w-52 rounded-2xl border border-blue-300 bg-white py-0 shadow-lg shadow-blue-100 sm:right-2">
         <CardContent className="space-y-1 px-4 py-3">
-          <p className="text-xs text-black/55">On Savings</p>
-          <p className="text-3xl font-semibold tracking-tight text-black">PHP 10,400.22</p>
+          <p className="text-xs text-black/55">Initial Amount</p>
+          <p className="text-3xl font-semibold tracking-tight text-black">₱10,000</p>
         </CardContent>
       </Card>
 
       <Card className="absolute -bottom-4 left-0 w-64 rounded-2xl border border-blue-300 bg-white py-0 shadow-lg shadow-blue-100 sm:-left-6">
         <CardContent className="grid grid-cols-2 gap-3 px-4 py-3">
           <div className="space-y-1">
-            <p className="text-xs text-black/55">Gross Interest</p>
-            <p className="text-2xl font-semibold tracking-tight text-black">659</p>
-            <p className="text-xs text-emerald-600">+5.23%</p>
+            <p className="text-xs text-black/55">Growth Rate</p>
+            <p className="text-2xl font-semibold tracking-tight text-black">6.59%</p>
+            <p className="text-xs text-emerald-600">Return on investment</p>
           </div>
           <div className="space-y-1 border-l border-blue-200 pl-3">
-            <p className="text-xs text-black/55">Net Gain</p>
-            <p className="text-2xl font-semibold tracking-tight text-black">546</p>
-            <p className="text-xs text-rose-600">After tax</p>
+            <p className="text-xs text-black/55">Final Amount</p>
+            <p className="text-2xl font-semibold tracking-tight text-black">₱10,659</p>
+            <p className="text-xs text-blue-600">After 12 months</p>
           </div>
         </CardContent>
       </Card>

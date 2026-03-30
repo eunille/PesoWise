@@ -42,9 +42,7 @@ export function ProblemSolutionCard({
       >
         {/* Left: Visual (illustration or mockup) - hidden on mobile */}
         <div className="hidden sm:flex items-center justify-center">
-          <div className="w-full max-w-md rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 p-4">
-            {visual}
-          </div>
+          {visual}
         </div>
 
         {/* Right: Content */}

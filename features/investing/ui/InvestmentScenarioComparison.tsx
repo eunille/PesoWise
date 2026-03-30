@@ -9,22 +9,33 @@
  * Reuses styling from ComparisonShell (platform cards) for consistency.
  */
 
-import { TrendingUp, AlertCircle } from 'lucide-react';
+import { useState } from 'react';
+import { TrendingUp, AlertCircle, HelpCircle } from 'lucide-react';
 import { useInvestmentState } from '@/hooks/useInvestmentState';
 import {
   INVESTMENT_SCENARIOS,
   type ScenarioType,
 } from '@/domain/investmentRates';
+import { CalculationMethodologyDialog } from './CalculationMethodologyDialog';
 
 export function InvestmentScenarioComparison() {
   const { allProjections } = useInvestmentState();
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   // Show empty state if no calculations yet
   if (!allProjections) {
     return (
       <div className="space-y-4">
-        <div>
+        <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold text-black">Scenario Comparison</h3>
+          <button
+            onClick={() => setDialogOpen(true)}
+            className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+            title="Learn how calculations are made"
+          >
+            <HelpCircle size={14} />
+            How It's Calculated?
+          </button>
         </div>
         <div className="rounded-lg border border-border/70 bg-white p-12">
           <div className="flex flex-col items-center justify-center text-center">
@@ -33,6 +44,10 @@ export function InvestmentScenarioComparison() {
             <p className="mt-1 text-sm text-black/60">Run a projection above to compare growth across scenarios</p>
           </div>
         </div>
+        <CalculationMethodologyDialog
+          open={dialogOpen}
+          onOpenChange={setDialogOpen}
+        />
       </div>
     );
   }
@@ -41,10 +56,20 @@ export function InvestmentScenarioComparison() {
 
   return (
     <div className="space-y-4">
-      {/* Header */}
-      <h3 className="text-sm font-semibold text-gray-900">
-        Scenario Comparison
-      </h3>
+      {/* Header with Help Button */}
+      <div className="flex items-center justify-between">
+        <h3 className="text-sm font-semibold text-gray-900">
+          Scenario Comparison
+        </h3>
+        <button
+          onClick={() => setDialogOpen(true)}
+          className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+          title="Learn how calculations are made"
+        >
+          <HelpCircle size={14} />
+          How It's Calculated?
+        </button>
+      </div>
 
       {/* Three Scenario Cards */}
       <div className="grid gap-3 md:grid-cols-3">
@@ -143,6 +168,12 @@ export function InvestmentScenarioComparison() {
           for planning purposes only, not investment advice.
         </p>
       </div>
+
+      {/* Calculation Methodology Dialog */}
+      <CalculationMethodologyDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+      />
     </div>
   );
 }

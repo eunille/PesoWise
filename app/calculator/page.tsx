@@ -163,7 +163,7 @@ export default function CalculatorPage() {
                 </p>
               </div>
 
-              <Button variant="outline" asChild className="h-10 sm:h-12 text-sm sm:text-base w-full sm:w-auto">
+              <Button variant="ghost" asChild className="h-10 sm:h-12 text-sm sm:text-base w-full sm:w-auto hover:bg-transparent">
                 <Link href="/">Back Home</Link>
               </Button>
             </div>
