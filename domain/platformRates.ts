@@ -39,12 +39,14 @@ export const PLATFORMS: Record<string, Platform> = {
   UNIONDIGITAL: {
     id: 'uniondigital',
     name: 'UnionDigital',
-    baseAPY: 0.0325, // 3.25% APY (mid-range of 3.0% - 3.5%)\n    description: 'Union Bank digital savings account',
+    baseAPY: 0.0325, // 3.25% APY (mid-range of 3.0% - 3.5%)
+    description: 'Union Bank digital savings account',
   },
   TONIK: {
     id: 'tonik',
     name: 'Tonik',
-    baseAPY: 0.025, // 2.5% APY (conservative estimate)\n    description: 'Digital bank with flexible savings options',
+    baseAPY: 0.025, // 2.5% APY (conservative estimate)
+    description: 'Digital bank with flexible savings options',
   },
 }
 
