@@ -21,7 +21,7 @@ export function WhatWeDeliverSection() {
     },
     {
       title: 'Smart Comparison Engine',
-      subtitle: '5 platforms compared instantly',
+      subtitle: '6 platforms compared instantly',
       description:
         'See all your options side-by-side with transparent assumptions and clear interest breakdowns.',
       icon: <TrendingUp className="size-8 sm:size-10 text-blue-600" />,
